@@ -131,20 +131,10 @@
         const panel = document.querySelectorAll('.panel');
 
 
-        function removeActive() {
-            console.log('po opóźnieniu');
-            console.log(this);
-            panel.forEach(panel => panel.classList.remove("active"))
-
-        }
-
-
         function toggleActive() {
             this.classList.toggle("active");
             console.log(this);
             console.log('hi');
-
-            setTimeout(removeActive, 5000)
         }
 
         panel.forEach(panel => panel.addEventListener("click", toggleActive));

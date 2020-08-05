@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Rock+Salt&display=swap" rel="stylesheet">
+    <title>Interactive photo banner</title>
+
+    <style>
+        html {
+            box-sizing: border-box;
+            font-family: 'Rock Salt', cursive;
+            font-weight: bolder;
+
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .panels {
+            display: flex;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .panel {
+            background: black;
+            color: black;
+            text-align: center;
+            flex: 1;
+            font-size: 20px;
+            transition:
+                /* font-size 0.7s 0.2s cubic-bezier(0.61, -0.19, 0.7, -0.11), */
+                flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+                background 0.2s;
+        }
+
+
+        .panel.active {
+            flex: 5;
+            font-size: 20px;
+        }
+
+        p {
+            position: relative;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            text-shadow: 0 0 20px rgb(241, 241, 153);
+            transition: 1s 0.7s;
+        }
+
+        p:nth-child(3) {
+            transition: .5s 0.7s;
+        }
+
+        .panel1 {
+            background-image: url(ASSETS/zay_R.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .panel2 {
+            background-image: url(ASSETS/middle_Lis.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .panel3 {
+            background-image: url(ASSETS/sirena.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .panel>*:first-child {
+            transform: translateX(-50%) translateY(-30vh)
+        }
+
+        .panel.active>*:first-child {
+            transform: translateX(-50%) translateY(0)
+        }
+
+        .panel>*:nth-child(2) {
+            transform: translateX(-50%) scale(0)
+        }
+
+        .panel.active>*:nth-child(2) {
+            transform: translateX(-50%) scale(1)
+        }
+
+        .panel>*:last-child {
+            transform: translateX(-50%) translateY(70vh)
+        }
+
+        .panel.active>*:last-child {
+            transform: translateX(-50%) translateY(0);
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="panels">
+        <div class="panel panel1">
+            <p>Dare to</p>
+            <p>Want</p>
+            <p>More</p>
+        </div>
+
+        <div class="panel panel2">
+            <p>Steer</p>
+            <p>Up</p>
+            <p>Ur life</p>
+        </div>
+
+        <div class="panel panel3">
+            <p>Live</p>
+            <p>Off</p>
+            <p>Grid</p>
+        </div>
+    </div>
+
+
+    <script>
+        const panel = document.querySelectorAll('.panel');
+
+
+        function removeActive() {
+            console.log('po opóźnieniu');
+            console.log(this);
+            panel.forEach(panel => panel.classList.remove("active"))
+
+        }
+
+
+        function toggleActive() {
+            this.classList.toggle("active");
+            console.log(this);
+            console.log('hi');
+
+            setTimeout(removeActive, 5000)
+        }
+
+        panel.forEach(panel => panel.addEventListener("click", toggleActive));
+    </script>
+</body>
+
+</html>
